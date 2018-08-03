@@ -1,0 +1,13 @@
+<%= form_tag menus_path do %> 
+  <div class='menu-panel'>
+    <ol>
+      <% for allergen in @menu %>
+        <li>
+          <%= check_box_tag 'allergen_id[]', allergen.id %>  
+          <%= allergen.category %>   
+        </li>
+      <% end %>
+    </ol>
+  </div>
+  <%= submit_tag "Submit", class: "btn btn-lg btn-primary"%>
+<% end %>
