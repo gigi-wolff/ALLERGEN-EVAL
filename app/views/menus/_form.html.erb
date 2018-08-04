@@ -1,5 +1,7 @@
 <%= form_tag menus_path do %> 
   <div class='menu-panel'>
+    <div class='center-heading'>Cosmetic Allergens</div>
+    <br>
     <ol>
       <% for allergen in @menu %>
         <li>
@@ -9,5 +11,7 @@
       <% end %>
     </ol>
   </div>
-  <%= submit_tag "Submit", class: "btn btn-lg btn-primary"%>
+  <br>
+  <br>
+  <%= submit_tag "Submit", class: "btn btn-xlarge btn-primary"%>
 <% end %>
