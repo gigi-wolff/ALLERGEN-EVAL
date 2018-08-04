@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180801010232) do
+ActiveRecord::Schema.define(version: 20180804004640) do
 
   create_table "allergens", force: :cascade do |t|
     t.string "category"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180801010232) do
   create_table "menus", force: :cascade do |t|
     t.string "category"
     t.text "substances"
-    t.boolean "selected", default: false
+    t.text "group", default: ""
   end
 
   create_table "products", force: :cascade do |t|
