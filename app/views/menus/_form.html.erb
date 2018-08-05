@@ -1,15 +1,18 @@
 <%= form_tag menus_path do %> 
   <div class='menu-panel'>
-    <div class='center-heading'>Cosmetic Allergens</div>
-    <br>
-    <ol>
-      <% for allergen in @menu %>
-        <li>
-          <%= check_box_tag 'allergen_id[]', allergen.id %>  
-          <%= allergen.category %>   
-        </li>
-      <% end %>
-    </ol>
+    <% allergen_groups().each do |key, value| %>
+      <div class='center-heading'><%= key %></div>
+      <% grouping = @menu.where(group: value) %>
+      <br>
+      <ol>
+        <% for allergen in grouping %>
+          <li>
+            <%= check_box_tag 'allergen_id[]', allergen.id %>  
+            <%= allergen.category %>   
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
   </div>
   <br>
   <br>
