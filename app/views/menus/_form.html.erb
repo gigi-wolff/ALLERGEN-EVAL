@@ -6,7 +6,7 @@
       <div class='center-heading'><%= key %></div>
       <% grouping = @menu.where(group: value) %>
       <br>
-      <ol class="menu-allergens">
+      <ol>
         <% for allergen in grouping %>
           <li>
             <%= check_box_tag 'allergen_id[]', allergen.id %>  

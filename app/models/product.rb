@@ -11,7 +11,7 @@ class Product < ApplicationRecord
   #to validate more than one column (or more), you can add that to the scope
   validates_uniqueness_of :name, presence: true, :case_sensitive => false, :scope => [:user_id], length: {minimum: 3}
   validates :ingredients, presence: true, length: {minimum: 3}
-  #validates :ingredients, format: { with: /\w+,\s/, :message => 'Ingredients must be seperated by ,' }
+  #validates :ingredients, format: { with: /\w+,\s/, :message => 'Ingredients must be seperated by comma(,) followed by a space' }
   validates :ingredients, format: { without: /;/, :message => "contains a ';' which is not a valid charcter" }
 
 
@@ -19,7 +19,7 @@ class Product < ApplicationRecord
   # When you write regular methods in the model those methods are all instance methods.  
   # In other words def some_method will be a method available on each retrieved record
   def get_ingredients 
-    return self.ingredients.split(',').each { |ingredient| ingredient.strip! }
+    return self.ingredients.split(', ').each { |ingredient| ingredient.strip! }
   end
 
   def causes_reaction
@@ -28,6 +28,14 @@ class Product < ApplicationRecord
     else
       return []
     end
+  end
+
+  def create_reaction(allergen,ingredient,substances)
+    Reaction.create(product_id: self.id, 
+      allergen_id: allergen.id, 
+      reactive_substances: substances,
+      reactive_ingredient: ingredient.upcase,
+      user_id: self.user_id)
   end
 
   def destroy_product_reaction
@@ -57,7 +65,7 @@ class Product < ApplicationRecord
         allergens_causing_reactions.each do |allergen|
           # add only those matching substances to the Reaction db
           allergen_substances_matching_ingredient = allergen.get_substances.select {|substance| substance.upcase.include?(ingredient.upcase)}.join(';')
-          create_reaction(self,allergen,ingredient,allergen_substances_matching_ingredient)
+          self.create_reaction(allergen,ingredient,allergen_substances_matching_ingredient)
         end
       end
     end

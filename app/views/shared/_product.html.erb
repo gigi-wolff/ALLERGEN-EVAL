@@ -5,7 +5,7 @@
   <% if index_view %>
     <% if product_reactions.empty? %>
       <% search_item = '' %>
-    <% else %>
+    <% else %> <!-- search_view-->
       <% search_item = product_reactions.select(:reactive_ingredient).distinct.pluck(:reactive_ingredient) %> 
     <% end %>
   <% end %>
@@ -14,6 +14,7 @@
     <%= highlight(product.name, search_item) %>
   </td>
   <td class="<%= product_reactions.empty? ? 'text-color-ok' : 'text-color-not-ok' %>">
+    debug = 1/0
     <%= highlight(product.ingredients, search_item) %>
   </td>
 

@@ -6,7 +6,7 @@ class MenusController < ApplicationController
 
   def index
     @menu = Menu.all
-    # render 'menus/index' happens by default at end of method
+    render 'menus/index'
   end
 
   # POST '/menus'
