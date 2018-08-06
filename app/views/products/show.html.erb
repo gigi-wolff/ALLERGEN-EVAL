@@ -8,9 +8,9 @@
     </tr>
     <!-- Check if product's ingredients cause an allergic reaction -->    
     <!-- if product contains NO ALLERGENS -->
-    <% if find_reaction(@product).empty? %>
+    <% if @product.causes_reaction.empty? %>
       <h5 class="center-heading text-color-ok"><strong>Ingredients: Contain No Allergens</strong></h5>
-      <% process_ingredients_string(@product.ingredients).each do |current_ingredient| %>  
+      <% @product.get_ingredients.each do |current_ingredient| %>  
         <tr>
           <td class="add-padding text-color-ok show-td"><%= current_ingredient %></td>
           <td></td>
@@ -21,7 +21,7 @@
     <% else %>
       <h5 class="center-heading text-color-not-ok"><strong>Ingredients: Contain Allergens</strong></h5>
       <!-- display each product ingredient -->
-      <% process_ingredients_string(@product.ingredients).each do |current_ingredient| %>  
+      <% @product.get_ingredients.each do |current_ingredient| %>  
         <!-- check if ingredient for this product is in Reaction db -->
         <% ingredient_search_results = search_all_reactions(current_ingredient, @product.user_id) %>
         <!-- if ingredient causes reaction -->

@@ -18,11 +18,56 @@ class Product < ApplicationRecord
   # The model should be able to answer the question "Can user x do y to this object?"
   # When you write regular methods in the model those methods are all instance methods.  
   # In other words def some_method will be a method available on each retrieved record
+  def get_ingredients 
+    return self.ingredients.split(',').each { |ingredient| ingredient.strip! }
+  end
+
+  def causes_reaction
+    if Reaction.exists?(product_id: self.id, user_id: self.user_id)
+      return Reaction.where("product_id = ? AND user_id = ?", self.id, self.user_id)
+    else
+      return []
+    end
+  end
+
+  def destroy_product_reaction
+    Reaction.where("product_id = ? AND user_id = ?", self.id, self.user_id).destroy_all
+  end
+
+  def check_for_allergens
+    #require "pry"
+
+    # If product exists in Reaction db, delete it so there aren't conflicting
+    # results in db
+    if self.causes_reaction.empty?
+      self.destroy_product_reaction
+    end
+
+    product_ingredients = self.get_ingredients
+
+    # test each ingredient
+    product_ingredients.each do |ingredient|
+      # check each ingredient in allergen db by looking for it in the substances 
+      # associated with each allergen category
+      #allergens_causing_reactions = Allergen.where "user_id = ? AND substances ILIKE ?", self.user_id, "%#{ingredient}%" #production
+      allergens_causing_reactions = Allergen.where "user_id = ? AND substances LIKE ?", self.user_id, "%#{ingredient}%" #development
+      # if ingredient matches allergens in db
+      unless allergens_causing_reactions.empty? 
+        # for each allergen that contains allergic substances
+        allergens_causing_reactions.each do |allergen|
+          # add only those matching substances to the Reaction db
+          allergen_substances_matching_ingredient = allergen.get_substances.select {|substance| substance.upcase.include?(ingredient.upcase)}.join(';')
+          create_reaction(self,allergen,ingredient,allergen_substances_matching_ingredient)
+        end
+      end
+    end
+    
+  end
 
   # After product has been created or updated (and saved) check if product contains allergens
   # and modify Reaction db accordingly
-  after_save do |product|
-    check_for_allergens(product)
+  after_save do
+   check_for_allergens 
   end
 
 end

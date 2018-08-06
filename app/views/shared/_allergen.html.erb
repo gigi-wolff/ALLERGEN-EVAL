@@ -1,4 +1,4 @@
-<% substances = get_substances(allergen,';') %>
+<% substances = allergen.get_substances %>
 <div id="<%= view_type %>" >
   <div id="<%= index_view ? 'index-panel' : 'show-panel' %>">
     <div id="<%= index_view ? 'index-panel-heading' : 'show-panel-heading' %>">

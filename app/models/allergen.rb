@@ -20,11 +20,15 @@ class Allergen < ApplicationRecord
   #Match any characters as few as possible until a ";" is found, without counting the ";".
   validates :substances, format: { with: /.+?(?=;)/, :message => "must end with or be seperated by a ';'" }
 
+  def get_substances
+    return self.substances.split(';')
+  end
+
   # After allergen has been created or updated (and saved) check all products for
   # this allergen
   after_save do |allergen|
     if Product.any?
-      Product.find_each {|product| check_for_allergens(product)}
+      Product.find_each {|product| product.check_for_allergens}
     end
   end 
 

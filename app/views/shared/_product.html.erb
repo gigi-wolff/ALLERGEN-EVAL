@@ -1,4 +1,4 @@
-<% product_reactions = find_reaction(product) %>
+<% product_reactions = product.causes_reaction %>
 <!-- for debugging... < % debug =1/0 % >  -->
   <tr id="<%= index_view ? '' : 'search_view' %>">
 
