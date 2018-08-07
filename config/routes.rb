@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #/search is the route to your search page and searches#search means your search.html.erb is located in the view folder named searches
   get '/search' => 'searches#search', as: 'search_search'
   #root 'allergens#index'
-  root 'menus#index'
+  root 'products#index'
 
   #When we use resources routes, we are mapping the browser 
   #requests (HTTP verbs and URLs) to the controller actions 
