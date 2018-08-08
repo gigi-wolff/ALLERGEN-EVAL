@@ -19,7 +19,9 @@ class Product < ApplicationRecord
   # When you write regular methods in the model those methods are all instance methods.  
   # In other words def some_method will be a method available on each retrieved record
   def get_ingredients 
-    return self.ingredients.split(', ').each { |ingredient| ingredient.strip! }
+    # get rid of all characters that are not: a-z A-Z 0-9 - [] () . ' / , blank;
+    clean_ingredients = self.ingredients.gsub(%r{[^a-zA-Z0-9\-\[\]\.\,\'\(\)\/\s]}, '')
+    return clean_ingredients.split(', ').each { |ingredient| ingredient.strip! }
   end
 
   def causes_reaction
@@ -51,14 +53,12 @@ class Product < ApplicationRecord
       self.destroy_product_reaction
     end
 
-    product_ingredients = self.get_ingredients
-
     # test each ingredient
-    product_ingredients.each do |ingredient|
+    self.get_ingredients.each do |ingredient|
       # check each ingredient in allergen db by looking for it in the substances 
       # associated with each allergen category
-      allergens_causing_reactions = Allergen.where "user_id = ? AND substances ILIKE ?", self.user_id, "%#{ingredient}%" #production
-      #allergens_causing_reactions = Allergen.where "user_id = ? AND substances LIKE ?", self.user_id, "%#{ingredient}%" #development
+      #allergens_causing_reactions = Allergen.where "user_id = ? AND substances ILIKE ?", self.user_id, "%#{ingredient}%" #production
+      allergens_causing_reactions = Allergen.where "user_id = ? AND substances LIKE ?", self.user_id, "%#{ingredient}%" #development
       # if ingredient matches allergens in db
       unless allergens_causing_reactions.empty? 
         # for each allergen that contains allergic substances
