@@ -43,10 +43,6 @@
         <div class="navbar-right btn btn-danger btn-lg">
           <span class="glyphicon glyphicon-log-out"></span><%= link_to(' Log out', destroy_user_session_path, method: :delete) %>
         </div>
-      <% elsif 1 < 0 %> <!-- disabled -->
-        <div class="navbar-right btn btn-success btn-lg">
-          <span class="glyphicon glyphicon-log-in"></span><%= link_to(' Log in', new_user_session_path) %> 
-        </div>
       <% end %>
       <!--  Search --> 
       <%= form_tag(search_search_path, :method => "get",class: 'navbar-right navbar-form') do %>  

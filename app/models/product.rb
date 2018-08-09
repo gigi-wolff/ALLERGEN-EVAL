@@ -57,8 +57,8 @@ class Product < ApplicationRecord
     self.get_ingredients.each do |ingredient|
       # check each ingredient in allergen db by looking for it in the substances 
       # associated with each allergen category
-      #allergens_causing_reactions = Allergen.where "user_id = ? AND substances ILIKE ?", self.user_id, "%#{ingredient}%" #production
-      allergens_causing_reactions = Allergen.where "user_id = ? AND substances LIKE ?", self.user_id, "%#{ingredient}%" #development
+      allergens_causing_reactions = Allergen.where "user_id = ? AND substances ILIKE ?", self.user_id, "%#{ingredient}%" #production
+      #allergens_causing_reactions = Allergen.where "user_id = ? AND substances LIKE ?", self.user_id, "%#{ingredient}%" #development
       # if ingredient matches allergens in db
       unless allergens_causing_reactions.empty? 
         # for each allergen that contains allergic substances
