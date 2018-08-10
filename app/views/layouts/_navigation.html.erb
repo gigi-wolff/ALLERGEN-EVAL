@@ -12,47 +12,41 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav custom-nav">
-        <div class="btn-group " role="group" aria-label="...">
+      <ul class="nav navbar-nav">
+        <div class="nav-buttons btn-group" role="group" aria-label="...">
           <button type="button" class="btn menu-action-button btn-lg"><%= link_to "Select Allergens", menus_path %></button>
         </div>
-        <div class="spacer"></div>
-        <div class="btn-group " role="group" aria-label="...">
+        <div class="nav-buttons btn-group " role="group" aria-label="...">
           <button type="button" class="btn allergen-action-button btn-lg"><%= link_to "List My Allergens", allergens_path %></button>
           <button type="button" class="btn allergen-action-button btn-lg"><%= link_to "Add an Allergen", new_allergen_path %></button>
           <button type="button" class="btn allergen-action-button btn-lg">
-          <%= link_to "Delete All Allergens", allergens_path, method: :delete, data: { confirm: "Are you sure you want to delete all Allergens?"}%></li>
+          <%= link_to "Delete All My Allergens", allergens_path, method: :delete, data: { confirm: "Are you sure you want to delete all Allergens?"}%></li>
         </div>
-        <div class="spacer"></div>
-        <div class="btn-group" role="group" aria-label="...">
+        <div class="nav-buttons btn-group" role="group" aria-label="...">
           <button type="button" class="btn product-action-button btn-lg"><%= link_to "List My Products", products_path %></button>
           <button type="button" class="btn product-action-button btn-lg"><%= link_to "Add a Product", new_product_path %></button>
           <button type="button" class="btn product-action-button btn-lg">
-          <%= link_to "Delete All Products", products_path, method: :delete, data: { confirm: "Are you sure you want to delete all Products?"}%></li>
+          <%= link_to "Delete All My Products", products_path, method: :delete, data: { confirm: "Are you sure you want to delete all Products?"}%></li>
         </div>
-
-<!-- 
-        <li id="link-desc"><%= link_to "List All Allergens", root_path %></li>
-        <li id="link-desc"><%= link_to "Add an Allergen", new_allergen_path %></li>
-        <li id="link-desc"><%= link_to "List All Products", products_path %></li>
-        <li id="link-desc"><%= link_to "Add a Product", new_product_path %></li>
- -->
       </ul>
-      <!--  Logout -->
-      <% if user_signed_in? %>
-        <div class="navbar-right btn btn-danger btn-lg">
-          <span class="glyphicon glyphicon-log-out"></span><%= link_to(' Log out', destroy_user_session_path, method: :delete) %>
-        </div>
-      <% end %>
       <!--  Search --> 
-      <%= form_tag(search_search_path, :method => "get",class: 'navbar-right navbar-form') do %>  
-        <div class="input-group">  
-          <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
-          <div class="input-group-btn">  
-            <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
-          </div>  
-        </div> 
-      <% end %>
+      <div id="search_form" class = "btn-group">
+        <%= form_tag(search_search_path, :method => "get",class: 'navbar-form') do %>  
+          <div class="input-group">  
+            <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+            <div class="input-group-btn">  
+              <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+            </div>  
+          </div> 
+        <% end %>
+      </div>
+      <% if user_signed_in? %>
+      <div class="btn-group navbar-right btn btn-danger btn-lg">
+        <span class="glyphicon glyphicon-log-out"></span><%= link_to(' Log out', destroy_user_session_path, method: :delete) %>
+      </div>
+    <% end %>
     </div><!-- /.navbar-collapse -->
+    <!--  Logout -->
+
   </div><!-- /.container-fluid -->
 </nav>

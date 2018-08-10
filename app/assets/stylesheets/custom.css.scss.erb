@@ -13,6 +13,10 @@ body {
   font-size: 1.8rem;
 }
 
+#search_form {
+  display: inline-block;
+}
+
 #logo {
   /*float: left;*/
   font-size: 4.75rem;
@@ -22,9 +26,11 @@ body {
   font-weight: bold;
   background: transparent url(<%= asset_path 'background-logo.jpg'%>) 82% 92% no-repeat;
 }
-.custom-nav {
-  margin-left:50px;
+
+.nav-buttons {
+  margin: 0 40px;
 }
+
 #link-desc > a {
   font-size: 3.0rem;
   font-weight: bold;
@@ -115,8 +121,8 @@ mark {
  }
 /*------------------*/
 
-/*Triggers Bootstrap collapses (vertically stacks) the navbar at 1540px rather than 768 px*/
-@media (max-width: 2140px) {
+/*Triggers Bootstrap collapses (vertically stacks) the navbar at 2300px rather than 768 px*/
+@media (max-width: 2300px) {
   .navbar-header {
       float: none;
   }
@@ -150,6 +156,9 @@ mark {
   }
   .collapse.in{
       display:block !important;
+  }
+  .nav-buttons {
+    margin: 0 15px;
   }
 }
 

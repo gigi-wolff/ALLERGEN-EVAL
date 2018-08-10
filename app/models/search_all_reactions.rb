@@ -3,7 +3,10 @@ def search_all_reactions(search_item, user_id)
   # use ILIKE in production and LIKE in development
   reactions = Reaction.where "user_id = ?", user_id
 
-  return reactions.where "reactive_ingredient ILIKE ? OR reactive_substances ILIKE ?", "%#{search_item}%", "%#{search_item}%"
-  #return reactions.where "reactive_ingredient LIKE ? OR reactive_substances LIKE ?", "%#{search_item}%", "%#{search_item}%"
+  #in production:
+  #return reactions.where "reactive_ingredient ILIKE ? OR reactive_substances ILIKE ?", "%#{search_item}%", "%#{search_item}%"
+
+  #in development:
+  return reactions.where "reactive_ingredient LIKE ? OR reactive_substances LIKE ?", "%#{search_item}%", "%#{search_item}%"
 
 end
