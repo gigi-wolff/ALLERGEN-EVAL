@@ -1,0 +1,26 @@
+<h1 class="center-heading">Products Containing Allergens</h1>
+<table class="table">
+  <tr colspan="4">
+    <th class='center'>Product</th>
+    <th class='center'>Allergic to Ingredients:</th>
+    <th class='center'>Allergen Categories:</th>
+    <th class='center'>Substances in Category:</th>
+  </tr>
+  <% @reaction_product_ids.each do |product_id| %>
+    <% product = Reaction.where("product_id = ?",product_id) %>
+    <tr class="text-color-not-ok">
+      <td>
+        <%= Product.find(product_id).name%>
+      </td>
+      <td>
+        <%= get_reactive_ingredients(product) %>
+      </td>
+      <td>
+        <%= get_allergen_categories(product) %>
+      </td>
+      <td>
+        <%= get_reactive_substances(product) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

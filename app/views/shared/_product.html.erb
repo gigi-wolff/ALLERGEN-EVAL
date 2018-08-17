@@ -1,7 +1,7 @@
 <% product_reactions = product.causes_reaction %>
 <!-- for debugging... < % debug =1/0 % >  -->
 
-  <tr id="<%= index_view ? '' : 'search_view' %>">
+  <tr id="<%= index_view ? '' : 'search_view' %>" class="product-index">
 
   <% if index_view %>
     <% if product_reactions.empty? %>
@@ -19,8 +19,8 @@
   </td>
 
   <% if index_view %>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Show', product_path(product) %></td>
-    <td><%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %></td>
+    <td class="product_reactions"><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td class="product_reactions"><%= link_to 'Show', product_path(product) %></td>
+    <td class="product_reactions"><%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %></td>
   <% end %>
 </tr>

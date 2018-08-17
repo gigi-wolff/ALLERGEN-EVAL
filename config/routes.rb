@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :allergens
   delete '/allergens', to: 'allergens#destroy_all'
   resources :menus, only: [:index, :create]
+  get '/reactions', to: 'reactions#index'
 
   #create a named route called register automatically
   #CRUD is not applicable so resource is not an appropriate choice,

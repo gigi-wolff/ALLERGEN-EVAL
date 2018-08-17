@@ -28,6 +28,9 @@
           <button type="button" class="btn product-action-button btn-lg">
           <%= link_to "Delete All My Products", products_path, method: :delete, data: { confirm: "Are you sure you want to delete all Products?"}%></li>
         </div>
+        <div class="nav-buttons btn-group" role="group" aria-label="...">
+          <button type="button" class="btn reaction-action-button btn-lg"><%= link_to "Product Allergies", reactions_path %></button>
+        </div>
       </ul>
       <!--  Search --> 
       <div id="search_form" class = "btn-group">
