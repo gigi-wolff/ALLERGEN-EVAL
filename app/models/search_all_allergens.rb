@@ -4,9 +4,9 @@ def search_all_allergens(search_item, user_id)
   allergens = Allergen.where "user_id = ?", user_id
 
   #in production:
-  #return allergens.where "category ILIKE ? OR substances ILIKE ?", "%#{search_item}%", "%#{search_item}%"
+  return allergens.where "category ILIKE ? OR substances ILIKE ?", "%#{search_item}%", "%#{search_item}%"
   
   #in development:
-  return allergens.where "category LIKE ? OR substances LIKE ?", "%#{search_item}%", "%#{search_item}%"
+  #return allergens.where "category LIKE ? OR substances LIKE ?", "%#{search_item}%", "%#{search_item}%"
 
 end
