@@ -1,12 +1,12 @@
 <% product_reactions = product.causes_reaction %>
 <!-- for debugging... < % debug =1/0 % >  -->
 
-  <tr id="<%= index_view ? '' : 'search_view' %>" class="product-index">
+  <tr id="<%= index_view ? '' : 'show_view' %>" class="product-index">
 
   <% if index_view %>
     <% if product_reactions.empty? %>
       <% search_item = '' %>
-    <% else %> <!-- search_view-->
+    <% else %> <!-- show_view-->
       <% search_item = product_reactions.select(:reactive_ingredient).distinct.pluck(:reactive_ingredient) %> 
     <% end %>
   <% end %>

@@ -16,7 +16,6 @@
           <td></td>
         </tr>
       <% end %>
-
     <!-- else product CONTAINS ALLERGENS -->
     <% else %>
       <h5 class="center-heading text-color-not-ok"><strong>Ingredients: Contain Allergens</strong></h5>
@@ -33,7 +32,7 @@
             <td class="add-padding color-not-ok">
               <% reactive_allergens = Allergen.find(ingredient_search_results.pluck(:allergen_id)) %>
               <div id="middle-align">
-              <%= render partial: 'shared/allergen', collection: reactive_allergens, :locals => {index_view: false, search_item: current_ingredient, :view_type=>'shrink'}  %>
+              <%= render partial: 'shared/allergen', collection: reactive_allergens, :locals => {index_view: false, search_item: current_ingredient, :view_type=>'mini-allergen-panel'}  %>
               <div>
             </td>
           </tr>

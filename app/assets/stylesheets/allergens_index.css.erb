@@ -27,14 +27,16 @@ body {
   height: 325px; /* panel(height) = panel-body(h) + index-panel-heading(h) */
   width: 20%;
   margin-bottom: 2%;
-  box-shadow: 4px 4px 1px 4px rgba(0, 0, 0, 0.3)
+  box-shadow: 6px 6px 10px 6px rgba(32, 77, 113, 0.27);
 }
 
 #show-panel {
   width: 100%;
   margin-top: 5px;
   margin-bottom: 5%;
-  box-shadow: 2px 2px 1px 2px rgba(0, 0, 0, 0.3)
+    box-shadow: 6px 6px 10px 6px rgba(32, 77, 113, 0.27);
+
+  #box-shadow: 2px 2px 1px 2px rgba(0, 0, 0, 0.3)
 }
 
 #index-panel-heading,
@@ -57,10 +59,7 @@ body {
   height: fit-content;
 }
 
-#index-panel-button {
-  white-space: normal; /* make text in button wrap */
-  font-size: 1.8rem;
-}
+
 
 #index-panel-body,
 #show-panel-body {
@@ -90,12 +89,12 @@ body {
   text-align: center;
 }
 
-#shrink {
+#mini-allergen-panel {
   display: inline-grid;
   margin: 1%;
 }
 
-#enlarge {
+#enlarge-allergen-panel {
   -webkit-transform:scale(1.8);
   -moz-transform:scale(1.8);
   -ms-transform:scale(1.8);
@@ -117,7 +116,9 @@ body {
 
 .btn-primary {
   background-color: #657c8e  !important; 
+  border-left: 3px solid #586c7b !important;
   border-color: #586c7b !important;
+  box-shadow: 4px 3px 7px 2px rgba(20, 26, 58, 0.64)
 }
 
 .btn-primary:hover {
@@ -126,6 +127,18 @@ body {
   border-color: #222635 !important;
 }
 
+#index-panel-button {
+  background-color: #657c8e  !important; 
+  border: 3px solid #586C89 !important
+  color: white;
+  white-space: normal; /* make text in button wrap */
+  font-size: 1.8rem;
+}
+
+#index-panel-button:hover {
+  pointer-events: none;
+  cursor: none;
+}
 .allergen-form-label {
   margin-top: -10px;
   font-size: 2.5rem;
@@ -152,4 +165,3 @@ body {
     width: 60%;
   }
 }
-
