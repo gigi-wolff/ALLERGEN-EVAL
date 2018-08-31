@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :products
   delete '/products', to: 'products#destroy_all'
+
   resources :allergens
   delete '/allergens', to: 'allergens#destroy_all'
+
   resources :menus, only: [:index, :create]
+  
   get '/reactions', to: 'reactions#index'
 
-  #create a named route called register automatically
   #CRUD is not applicable so resource is not an appropriate choice,
   #instead manually build routes 
   #/search is the route to your search page and searches#search means your search.html.erb is located in the view folder named searches

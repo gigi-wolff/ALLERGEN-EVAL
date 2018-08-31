@@ -9,8 +9,7 @@
       <ol>
         <% grouping.each do |allergen| %>
           <li>
-            <!-- check_box_tag params name, value = allergen.id, checked = false, options = {}) -->
-            <%= check_box_tag 'allergen_id[]', allergen.id, @selected_categories.include?(allergen.category) %>
+            <%= check_box_tag 'allergen_id[]', allergen.id, @user_allergen_categories.include?(allergen.category) %>
             <%= allergen.category %>   
           </li>
         <% end %>
