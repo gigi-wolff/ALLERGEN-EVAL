@@ -19,10 +19,10 @@ module ApplicationHelper
     # use ILIKE in production and LIKE in development
 
     #in production:
-    #return Allergen.where "user_id = ? AND category ILIKE ? OR substances ILIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
+    return Allergen.where "user_id = ? AND category ILIKE ? OR substances ILIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
     
     #in development:
-    return Allergen.where "user_id = ? AND category LIKE ? OR substances LIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
+    #return Allergen.where "user_id = ? AND category LIKE ? OR substances LIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
   end
 
   def search_all_products(search_item, user_id)
@@ -30,10 +30,10 @@ module ApplicationHelper
     # use ILIKE in production and LIKE in development
 
     #in production:
-    #return Product.where "user_id = ? AND name ILIKE ? OR ingredients ILIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
+    return Product.where "user_id = ? AND name ILIKE ? OR ingredients ILIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
 
     #in development:
-    return Product.where "user_id = ? AND name LIKE ? OR ingredients LIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
+    #return Product.where "user_id = ? AND name LIKE ? OR ingredients LIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
   end
   
   def search_all_reactions(search_item, user_id)
@@ -41,9 +41,9 @@ module ApplicationHelper
     # use ILIKE in production and LIKE in development
 
     #in production:
-    #return Reaction.where "user_id = ? AND reactive_ingredient ILIKE ? OR reactive_substances ILIKE ?",user_id, "%#{search_item}%", "%#{search_item}%"
+    return Reaction.where "user_id = ? AND reactive_ingredient ILIKE ? OR reactive_substances ILIKE ?",user_id, "%#{search_item}%", "%#{search_item}%"
 
     #in development:
-    return Reaction.where "user_id = ? AND reactive_ingredient LIKE ? OR reactive_substances LIKE ?",user_id, "%#{search_item}%", "%#{search_item}%"
+    #return Reaction.where "user_id = ? AND reactive_ingredient LIKE ? OR reactive_substances LIKE ?",user_id, "%#{search_item}%", "%#{search_item}%"
   end
 end
