@@ -22,7 +22,7 @@
       <!-- display each product ingredient -->
       <% @product.get_ingredients.each do |current_ingredient| %>  
         <!-- check if ingredient for this product is in Reaction db -->
-        <% ingredient_search_results = search_all_reactions(current_ingredient, @product.user_id) %>
+        <% ingredient_search_results = search_all_reactions(current_ingredient, current_user) %>
         <!-- if ingredient causes reaction -->
         <% unless ingredient_search_results.empty? %>
           <tr>

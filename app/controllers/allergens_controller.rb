@@ -2,7 +2,7 @@ class AllergensController < ApplicationController
   # Use before_action to set up an instance variable for an action, 
   # in this case, call set_allergen before calling edit or destroy
   before_action :set_allergen, only: [:edit, :destroy, :update, :show]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index]
 
 # run 'rails routes' then add '_path' to the Prefix to get the url
 

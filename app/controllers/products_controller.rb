@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   # in this case, call set_product before calling show, edit, update and destroy
   # before_action :set_product, only: [:edit, :update, :show, :destroy]
   before_action :set_product, only: [:edit, :update, :show, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index]
   helper_method :sort_column, :sort_direction
 
 
@@ -109,7 +109,6 @@ class ProductsController < ApplicationController
     # ask ActiveRecord to find the Product object in the db using the id from params
     #@product = Product.find_by(params[:id])
     @product = Product.find_by id: params[:id], user_id: current_user.id
-
   end
 
   def product_params

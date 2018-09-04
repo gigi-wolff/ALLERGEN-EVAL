@@ -24,7 +24,6 @@ Rails.application.routes.draw do
 
   # routes are mapped to: controller actions (Order of declaration matters)
 =begin
-
   # get '/products', to: 'products#index', as: 'products_path'
   # get '/products/:id', to: 'products#show', as: 'post_path(object)'
   # get '/products/:id/edit', to: 'products#edit', as: 'edit_product_path(object)'
@@ -32,7 +31,6 @@ Rails.application.routes.draw do
   # post '/products', to: 'products#create'
   # patch '/products/:id', to: 'products#update'
   # delete '/products/:id', to: 'products#destroy'
-
   # resource routing maps routes to controller actions replacing code above
   # with a single line of code:   "resources :products"
 =end
