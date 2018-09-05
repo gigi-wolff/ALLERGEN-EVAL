@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180804004640) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "allergens", force: :cascade do |t|
     t.string "category"
     t.text "substances"
