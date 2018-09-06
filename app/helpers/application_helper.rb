@@ -15,35 +15,24 @@ module ApplicationHelper
   end
 
   def search_all_allergens(search_item, user_id)
-    # LIKE is the SQL standard while ILIKE is a useful extension made by PostgreSQL.
-    # use ILIKE in production and LIKE in development
 
-    #in production:
+    # postgres uses ILIKE, sqlite3 uses LIKE:
     return Allergen.where "user_id = ? AND category ILIKE ? OR substances ILIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
-    
-    #in development:
-    #return Allergen.where "user_id = ? AND category LIKE ? OR substances LIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
+
   end
 
   def search_all_products(search_item, user_id)
-    # LIKE is the SQL standard while ILIKE is a useful extension made by PostgreSQL.
-    # use ILIKE in production and LIKE in development
 
-    #in production:
+    # postgres uses ILIKE, sqlite3 uses LIKE:
     return Product.where "user_id = ? AND name ILIKE ? OR ingredients ILIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
 
-    #in development:
-    #return Product.where "user_id = ? AND name LIKE ? OR ingredients LIKE ?", user_id, "%#{search_item}%", "%#{search_item}%"
   end
   
   def search_all_reactions(search_item, user_id)
-    # LIKE is the SQL standard while ILIKE is a useful extension made by PostgreSQL.
-    # use ILIKE in production and LIKE in development
 
-    #in production:
+    # postgres uses ILIKE, sqlite3 uses LIKE:
     return Reaction.where "user_id = ? AND reactive_ingredient ILIKE ? OR reactive_substances ILIKE ?",user_id, "%#{search_item}%", "%#{search_item}%"
 
-    #in development:
-    #return Reaction.where "user_id = ? AND reactive_ingredient LIKE ? OR reactive_substances LIKE ?",user_id, "%#{search_item}%", "%#{search_item}%"
   end
+  
 end

@@ -12,8 +12,10 @@
       <h5 class="center-heading text-color-ok"><strong>Ingredients: Contain No Allergens</strong></h5>
       <% @product.get_ingredients.each do |current_ingredient| %>  
         <tr>
-          <td class="add-padding text-color-ok show-td"><%= current_ingredient %></td>
-          <td></td>
+          <td class="show-ingredient-name add-padding text-color-ok"><%= current_ingredient %></td>
+          <td class="center-glyphicon text-color-ok">
+            <span class="glyphicon glyphicon-ok"></span>
+          </td>
         </tr>
       <% end %>
     <!-- else product CONTAINS ALLERGENS -->
@@ -26,21 +28,26 @@
         <!-- if ingredient causes reaction -->
         <% unless ingredient_search_results.empty? %>
           <tr>
-            <td id="show-ingredient-name" class="add-padding color-not-ok">
+            <td class="show-ingredient-name add-padding color-not-ok">
               <%= current_ingredient %>
             </td>
             <td class="add-padding color-not-ok">
               <% reactive_allergens = Allergen.find(ingredient_search_results.pluck(:allergen_id)) %>
+              <div class="center-glyphicon text-color-not-ok">
+                <span class="glyphicon glyphicon-ban-circle"></span> 
+              </div>
               <div id="middle-align">
-              <%= render partial: 'shared/allergen', collection: reactive_allergens, :locals => {index_view: false, search_item: current_ingredient, :view_type=>'mini-allergen-panel'}  %>
+                <%= render partial: 'shared/allergen', collection: reactive_allergens, :locals => {index_view: false, search_item: current_ingredient, :view_type=>'mini-allergen-panel'}  %>
               <div>
             </td>
           </tr>
         <% else %>
         <!-- ingredient does not cause a reaction -->
           <tr>
-            <td id="show-ingredient-name" class="add-padding text-color-ok"><%= current_ingredient %></td>
-            <td></td>
+            <td class="show-ingredient-name add-padding text-color-ok"><%= current_ingredient %></td>
+            <td class="center-glyphicon text-color-ok">
+              <span class="glyphicon glyphicon-ok"></span>
+            </td>
           </tr>
         <% end %>
       <% end %>
