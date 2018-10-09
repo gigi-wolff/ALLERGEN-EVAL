@@ -19,8 +19,8 @@
   </td>
 
   <% if index_view %>
-    <td class="product_reactions"><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td class="product_reactions"><%= link_to 'Show', product_path(product) %></td>
-    <td class="product_reactions"><%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to 'Show', product_path(product) %></td>
+    <td><%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: "Are you sure?"} %></td>
   <% end %>
 </tr>

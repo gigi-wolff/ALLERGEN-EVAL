@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :products
@@ -11,9 +12,11 @@ Rails.application.routes.draw do
   
   get '/reactions', to: 'reactions#index'
 
+  resources :profiles, only: [:show, :edit]
+  
   #CRUD is not applicable so resource is not an appropriate choice,
   #instead manually build routes 
-  #/search is the route to your search page and searches#search means your search.html.erb is located in the view folder named searches
+  #/search is the route, it points to (=>) searches#search (controller_name#action  where action is a function) 
   get '/search' => 'searches#search', as: 'search_search'
   #root 'allergens#index'
   root 'products#index'

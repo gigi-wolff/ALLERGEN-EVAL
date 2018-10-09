@@ -7,7 +7,7 @@
         <div class="btn-group btn-group-lg ">
           <% if index_view %>
             <div id="index-panel-button" class="btn"><%= allergen.category %></div>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-my-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="glyphicon glyphicon-tasks"></span>
               <span class="sr-only">Toggle Dropdown</span>
             </button>
@@ -18,7 +18,7 @@
             </ul>
           <% else %>
             <div id = "search_view">
-              <button type="button" id="index-panel-button" class="btn btn-primary"><%= allergen.category %></button>
+              <button type="button" id="index-panel-button" class="btn btn-my-primary"><%= allergen.category %></button>
             </div>
           <% end %>
         </div>
@@ -42,4 +42,5 @@
     </div>
   </div>
 </div>
+
 

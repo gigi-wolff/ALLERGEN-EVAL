@@ -34,27 +34,20 @@ class ProductsController < ApplicationController
   end
 
   # GET '/products/new'
+  # display a blank form to the user
   def new
     # set up a new instance variable which is an active record object
-    # and pass it to the 'new' template in "new.html.erb" 
+    # and pass it to the 'new' template in "new.html.erb"
     @product = Product.new
     # render 'products/new' happens by default at end of method
   end
 
-  # GET '/products/:id/edit'
-  def edit # url will be something like /products/3/edit, edit form will be rendered
-    # @product = Product.find(params[:id])... this is now done by set_product
-    # render 'products/edit by default
-  end
-
   # POST '/product'
-  # the general pattern used in the action create that handles
-  # submission of model-backed forms 
+  # this is where you go after the user fills out the form and clicks submit on the form
   def create 
-  # the form displayed in "new.html.erb" is submitted to action='/products' 
-  # using verb method="post" which is routed to products#create.
-  # @product, is populated with values (params) submitted from the form
-    @product = Product.new(product_params)
+  # information entered on the form is returned in params hash 
+  # ie: "product"=>{name=>"product name", ingredients=>"ingredient 1, ingredient2"}
+    @product = Product.new(product_params) # create a new Product object and fill it values from the form
     @product.creator = current_user
     # check for allergens and populate reactions db when you save product
     if @product.save # @product.save returns "false" if it can't save
@@ -67,6 +60,12 @@ class ProductsController < ApplicationController
       # "products.error.full_messages" array to display generated errors 
       render 'new'
     end
+  end
+
+  # GET '/products/:id/edit'
+  def edit # url will be something like /products/3/edit, edit form will be rendered
+    # @product = Product.find(params[:id])... this is now done by set_product
+    # render 'products/edit by default
   end
 
   # PATCH '/products/:id'
@@ -115,6 +114,7 @@ class ProductsController < ApplicationController
     # use strong parameters to expose the fields we're interested in
     # require top level key be product and allow changes to name, ingredients
     params.require(:product).permit(:name, :ingredients)
+    # returns {name=>"product name", ingredients=>"ingredient 1, ingredient2"}
     # To permit all attributes params.require(:post).permit!
   end
 

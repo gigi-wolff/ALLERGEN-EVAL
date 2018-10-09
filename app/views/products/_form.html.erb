@@ -11,38 +11,22 @@ text_field can to be any attribute (column) or virtual attribute of the product 
 <%= render 'shared/errors', obj: @product %>
 
 <div class='row'>
-  <div class='col-xs-12'>
-    <%= form_for(@product, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-      <div class="form-group">
-        <div class="control-label col-sm-2">
-          <div class="product-form-label">
-            <%= f.label :name %>
-          </div>
-        </div>
-        <div class="col-sm-8 input-group-lg">
-          <%= f.text_field :name, class: "form-control", placeholder: "Name of Product", autofocus: true %>
-        </div>
+  <!-- there are 12 cols in row, if boxes take up 6 'col-lg-6', then offset by 3 'col-lg-offset-3' on each side will center boxes -->
+  <div class='form-horizontal col-lg-6 col-lg-offset-3'>
+    <%= form_for @product do |f| %>
+      <div class="form-group input-group-lg" >
+        <%= f.label :name, class:"label-style"%>
+        <%= f.text_field :name, class: "form-control", placeholder: "Name of Product", autofocus: true %>
       </div>
-      <div class="form-group">
-        <div class="control-label col-sm-2">
-          <div class="product-form-label ">
-            <%= f.label :ingredients %>
-          </div>
-        </div>
-        <div class="col-sm-8 input-group-lg">
-          <%= f.text_area :ingredients, rows: 10, class: "form-control", placeholder: "ingredient, ingredient, ... " %>
-        </div>
-      </div>  
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-primary btn-xlarge">Check and Save</button>
-        </div>
+      <br>
+      <div class="form-group input-group-lg">
+        <%= f.label :ingredients, class:"label-style"%>
+        <%= f.text_area :ingredients, rows: 10, class: "form-control", placeholder: "ingredient 1, ingredient 2, ... " %>
       </div>
+
+      <button type="submit" class="btn btn-my-primary btn-lg">Check and Save</button>
     <% end %>
-    <div class="col-xs-4 col-xs-offset-4">
-      <div class="product-form-label">
-        <%= link_to "Cancel request and return to products listing", products_path %> 
-      </div>
-    </div>
+    <br>
+    <%= link_to "Cancel request and return to products listing", products_path %> 
   </div>
 </div>

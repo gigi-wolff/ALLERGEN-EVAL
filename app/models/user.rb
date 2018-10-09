@@ -8,4 +8,7 @@ class User < ApplicationRecord
   has_many :products
   has_many :allergic_reactions
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
 end

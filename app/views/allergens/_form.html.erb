@@ -1,9 +1,10 @@
 <!-- 
+Forms are how we communicate with the db.
 Model backed form helpers are tied to an object. There has to be a setter method, a virtual attribute or a column in the database, available for that object when using the model backed form helpers. We use model backed form helpers usually when we need to create, edit, or update an object.
 
 By convention, form_for creates a form based on a specific model object. We are able to create, edit, and update that object's attributes. A form can be created by passing form_for a string or symbol relating to the object we want to deal with.
 
-Here, the model-backed form takes an ojbect @allergen and infers the action and all else based on convention. Form_for checks to see if @allergen is a new or existing object. If its a new object, it routes the information submitted to the 'create route' by setting action='/allergens' (uri) and method='post' (verb). This can be seen by using "inspect element" in chrome. In the case that #allergen is an exsisting object, its is routed to the update route, setting action='/allergens/id' and method='post' (this works because there is a hidden _method="patch" which converts post to patch for rails to use). The information submitted is stored in a params hash that can be used for mass assignment, in this case "allergen"=>{"category"=>"some category"}.
+Here, the model-backed form takes an object @allergen and infers the action and all else based on convention. Form_for checks to see if @allergen is a new or existing object. If its a new object, it routes the information submitted to the 'create route' by setting action='/allergens' (uri) and method='post' (verb). This can be seen by using "inspect element" in chrome. In the case that #allergen is an exsisting object, its is routed to the update route, setting action='/allergens/id' and method='post' (this works because there is a hidden _method="patch" which converts post to patch for rails to use). The information submitted is stored in a params hash that can be used for mass assignment, in this case "allergen"=>{"category"=>"some category"}.
 Allergen.create(params[:post]) is equivalent to Allergen.create("category"=>"some category")
 
 text_field can to be any attribute (column) or virtual attribute of the allergen model that is permitted (in allergens_controller.rb under function 'allergen_params' is where we set permissions). In the allergen model, attributes are: id, category, substances
@@ -11,7 +12,8 @@ text_field can to be any attribute (column) or virtual attribute of the allergen
 <%= render 'shared/errors', obj: @allergen %>
  
 <div class='row'>
-  <div class='col-xs-12 form-horizontal'>
+  <!-- there are 12 cols in row, if boxes take up 6 'col-lg-6', then offset by 3 'col-lg-offset-3' on each side will center boxes -->
+  <div class='form-horizontal col-lg-6 col-lg-offset-3'>
     <%= form_with model:@allergen do |f| %>
       <div class="form-group">
         <div class="text-color-not-ok control-label col-sm-2">
@@ -33,7 +35,7 @@ text_field can to be any attribute (column) or virtual attribute of the allergen
       </div>  
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-primary btn-xlarge">Save</button>
+          <button type="submit" class="btn btn-my-primary btn-lg">Save</button>
         </div>
       </div>
     <% end %>

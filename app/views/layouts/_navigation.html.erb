@@ -44,12 +44,14 @@
         <% end %>
       </div>
       <% if user_signed_in? %>
-      <div class="btn-group navbar-right btn btn-danger btn-lg">
-        <span class="glyphicon glyphicon-log-out"></span><%= link_to(' Log out', destroy_user_session_path, method: :delete) %>
-      </div>
+        <div class="btn-group btn btn-primary btn-lg">
+          <span class="glyphicon glyphicon-user"></span><%= link_to current_user.first_name, profile_path(current_user.id)%>
+        </div>
+
+        <div class="btn-group navbar-right btn btn-danger btn-lg">
+          <span class="glyphicon glyphicon-log-out"></span><%= link_to(' Log out', destroy_user_session_path, method: :delete) %>
+        </div>
     <% end %>
     </div><!-- /.navbar-collapse -->
-    <!--  Logout -->
-
   </div><!-- /.container-fluid -->
 </nav>
