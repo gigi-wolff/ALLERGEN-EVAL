@@ -36,22 +36,23 @@
       <div id="search_form" class = "btn-group">
         <%= form_tag(search_search_path, :method => "get",class: 'navbar-form') do %>  
           <div class="input-group">  
-            <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+            <%= search_field_tag :search, params[:search], placeholder: "Search...", class: "form-control" %>  
             <div class="input-group-btn">  
               <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
             </div>  
           </div> 
         <% end %>
       </div>
+      <!-- Profile and Log Out buttons -->
       <% if user_signed_in? %>
-        <div class="btn-group btn btn-primary btn-lg">
-          <span class="glyphicon glyphicon-user"></span><%= link_to current_user.first_name, profile_path(current_user.id)%>
-        </div>
+        <%= link_to profile_path(current_user.id), class: "btn-profile" do %>
+          <span class="glyphicon glyphicon-user"></span>
+        <% end %>
 
-        <div class="btn-group navbar-right btn btn-danger btn-lg">
-          <span class="glyphicon glyphicon-log-out"></span><%= link_to(' Log out', destroy_user_session_path, method: :delete) %>
-        </div>
-    <% end %>
+        <%= link_to destroy_user_session_path, class: "btn-group navbar-right btn btn-danger btn-lg", method: :delete do %>Log out 
+          <span class="glyphicon glyphicon-log-out"></span>
+        <% end %>
+      <% end %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
