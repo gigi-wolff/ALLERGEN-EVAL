@@ -1,0 +1,22 @@
+<% substances = allergen_target.get_substances %>
+<div class="panel-small">
+  <div class="panel-heading-small">
+    <div class="btn-group">
+      <button type="button" class="btn btn-lg btn-my-primary btn-disabled" >
+        <%= allergen_target.category %>
+      </button>
+    </div>
+  </div>
+  <div class="panel-body-small">
+    <% substances.each do |substance| %>
+      <% if substance.upcase.include?(search_item.upcase)%> 
+        <div class="substances text-color-not-ok">
+          <%= highlight(substance, search_item) %> 
+        </div> 
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+

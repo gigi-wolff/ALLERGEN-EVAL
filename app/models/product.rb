@@ -32,7 +32,7 @@ class Product < ApplicationRecord
     end
   end
 
-  def create_product_reaction(allergen,ingredient,substances)
+  def create_reaction(allergen,ingredient,substances)
     Reaction.create(product_id: self.id, 
       allergen_id: allergen.id, 
       reactive_substances: substances,
@@ -48,26 +48,25 @@ class Product < ApplicationRecord
     #require "pry"
 
     # If product exists in Reaction db, delete it so there aren't conflicting
-    # results in db
+    # results
     unless self.causes_reaction.empty?
       self.destroy_product_reaction
     end
 
-    # test each ingredient
+    # test each ingredient in product
     self.get_ingredients.each do |ingredient|
-      # check each ingredient in allergen db by looking for it in the substances 
-      # associated with each allergen category
-      # (production:)
-      allergens_causing_reactions = Allergen.where "user_id = ? AND substances ILIKE ?", self.user_id, "%#{ingredient}%" #production
-      # (development:)
-      #allergens_causing_reactions = Allergen.where "user_id = ? AND substances LIKE ?", self.user_id, "%#{ingredient}%" #development
+      # check each ingredient against substances in each allergen category 
+      allergens_causing_reactions = Allergen.where "user_id = ? AND substances ILIKE ?", self.user_id, "%#{ingredient}%"
       # if ingredient matches allergens in db
       unless allergens_causing_reactions.empty? 
-        # for each allergen that contains allergic substances
+        # for each allergen that contains a substance(s) that matches an ingredient
         allergens_causing_reactions.each do |allergen|
           # add only those matching substances to the Reaction db
           allergen_substances_matching_ingredient = allergen.get_substances.select {|substance| substance.upcase.include?(ingredient.upcase)}.join(';')
-          self.create_product_reaction(allergen,ingredient,allergen_substances_matching_ingredient)
+          unless allergen_substances_matching_ingredient.blank?
+            #logger.info("    ----- matching substances: #{allergen_substances_matching_ingredient[0]} -- ")
+            self.create_reaction(allergen,ingredient,allergen_substances_matching_ingredient)
+          end
         end
       end
     end
@@ -77,7 +76,7 @@ class Product < ApplicationRecord
   # After product has been created or updated (and saved) check if product contains allergens
   # and modify Reaction db accordingly
   after_save do
-   check_for_allergens 
+   check_for_allergens
   end
 
 end

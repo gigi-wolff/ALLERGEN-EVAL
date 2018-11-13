@@ -30,6 +30,10 @@ body {
   margin: 0 10px;
 }
 
+.label-color {
+  color: #00334d;
+}
+
 #link-desc > a {
   font-size: 3.0rem;
   font-weight: bold;
@@ -44,7 +48,6 @@ body {
 .center-heading {
   text-align: center;
   font-size: 3.7rem;
-  color: #00334d;
   text-transform: uppercase;
   letter-spacing: -1px;
   font-weight: bold;
@@ -82,22 +85,62 @@ mark {
   margin: 2px 2px;
   border-radius: 30px;
   cursor: pointer;
+  width: 55px;
+}
+
+
+.btn-lg > a,
+.btn-profile > a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
 }
 
 .btn-profile:hover {
-  color:white;
-  background-color: #3b474e !important; 
+  color: #337ab7;
+  border: 3px solid #337ab7;
+  background-color: #d8e6f2 !important; 
 }
 
-.btn-lg > a,
-.btn-profile> a {
-  color: white;
-  text-decoration: none;
+.btn-logout {
+  width: 150px;
+}
+
+.btn-disabled {
+  pointer-events: none;
 }
 
 .center-btn{
   display: block;
   margin: 0 auto;
+}
+
+.nav .open > a, 
+.nav .open > a:hover, 
+.nav .open > a:focus,
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: #d8e6f2;
+}
+
+.dropdown-toggle {
+  font-size: 22px;
+  color: white;
+}
+
+.dropdown-menu {
+  box-shadow: 18px 12px 12px rgba(0, 0, 0, 0.175)
+}
+
+.dropdown-menu > li > a {
+  background: #f7fafc;
+}
+
+.dropdown-menu > li > a:hover, 
+.dropdown-menu > li > a:focus {
+  text-decoration: none;
+  color: #262626;
+  background-color: #d8e6f2;
 }
 
 /* this creates an xl button and centers it on the page */
@@ -174,7 +217,7 @@ mark {
 /*------------------*/
 
 /*Triggers Bootstrap collapses (vertically stacks) the navbar at 2300px rather than 768 px*/
-@media (max-width: 2400px) {
+@media (max-width: 1200px) {
   .navbar-header {
       float: none;
   }

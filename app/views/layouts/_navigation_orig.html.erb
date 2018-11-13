@@ -1,0 +1,63 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header navbar-left">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <%= link_to "Allergen-Check", root_path, class: "navbar-brand", id:"logo" %>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <div class="nav-buttons btn-group" role="group" aria-label="...">
+          <button type="button" class="btn menu-action-button btn-lg"><%= link_to "Select Allergens", menus_path %></button>
+        </div>
+
+        <div class="nav-buttons btn-group " role="group" aria-label="...">
+          <button type="button" class="btn allergen-action-button btn-lg"><%= link_to "List My Allergens", allergens_path %></button>
+          <button type="button" class="btn allergen-action-button btn-lg"><%= link_to "Add an Allergen", new_allergen_path %></button>
+          <button type="button" class="btn allergen-action-button btn-lg">
+          <%= link_to "Delete All My Allergens", allergens_path, method: :delete, data: { confirm: "Are you sure you want to delete all Allergens?"}%></li>
+        </div>
+
+        <div class="nav-buttons btn-group" role="group" aria-label="...">
+          <button type="button" class="btn product-action-button btn-lg"><%= link_to "List My Products", products_path %></button>
+          <button type="button" class="btn product-action-button btn-lg"><%= link_to "Add a Product", new_product_path %></button>
+          <button type="button" class="btn product-action-button btn-lg"><%= link_to "Check All My Products", products_path, method: :patch%></button>
+          <!-- <button type="button" class="btn product-action-button btn-lg"> 
+          <%= link_to "Delete All My Products", products_path, method: :delete, data: { confirm: "Are you sure you want to delete all Products?"}%></li>
+          -->
+        </div>
+
+        <div class="nav-buttons btn-group" role="group" aria-label="...">
+          <button type="button" class="btn reaction-action-button btn-lg"><%= link_to "Product Allergies", reactions_path %></button>
+        </div>
+      </ul>
+      <!--  Search --> 
+      <div id="search_form" class = "btn-group">
+        <%= form_tag(search_search_path, :method => "get",class: 'navbar-form') do %>  
+          <div class="input-group">  
+            <%= search_field_tag :search, params[:search], placeholder: "Search...", class: "form-control" %>  
+            <div class="input-group-btn">  
+              <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+            </div>  
+          </div> 
+        <% end %>
+      </div>
+      <!-- Profile and Log Out buttons -->
+      <% if user_signed_in? %>
+        <%= link_to profile_path(current_user.id), class: "btn-profile" do %>
+          <span class="glyphicon glyphicon-user"></span>
+        <% end %>
+
+        <%= link_to destroy_user_session_path, class: "btn-group navbar-right btn btn-danger btn-lg", method: :delete do %>Log out 
+          <span class="glyphicon glyphicon-log-out"></span>
+        <% end %>
+      <% end %>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

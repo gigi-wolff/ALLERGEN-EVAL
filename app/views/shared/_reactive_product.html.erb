@@ -1,0 +1,14 @@
+<% reactions_to_product = get_all_product_reactions(reactive_product) %>
+<tr class="text-color-not-ok">
+  <td>
+    <%= Product.find(reactive_product).name %>
+  </td>
+  <td>
+    <%= get_reactive_ingredients(reactions_to_product) %>
+  </td>
+  <td>
+    <%= get_allergen_categories(reactions_to_product) %>
+  </td>
+  <td>
+    <%= get_reactive_substances(reactions_to_product) %>
+  </td>

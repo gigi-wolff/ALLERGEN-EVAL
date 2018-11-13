@@ -1,8 +1,6 @@
 <body>
-  <h1 class="center-heading"><strong>Allergens</strong></h1>
-  <div>
-    <%= render partial: "shared/allergen", collection: @allergens, :locals => {:index_view => true, :search_item => "", :view_type=>""}  %>
-  </div>
+  <h1 class="center-heading label-color"><strong>Allergens</strong></h1>
+  <%= render partial: "allergen_details", collection: @allergens %>
   <br>
   <div class="center">
     <%= link_to "Add New Allergen", new_allergen_path, class: "btn btn-xlarge btn-my-primary" %>

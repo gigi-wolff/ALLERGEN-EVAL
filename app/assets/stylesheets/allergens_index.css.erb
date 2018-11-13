@@ -9,87 +9,50 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.my-container {
-  width: 100vw;
-  height: 100vh;
-  padding-left: 5%;
-  padding-right: 5%;
+.panel,
+.panel-small {
+  height: 325px; /* panel(height) = panel-body(height) + panel-heading(height) */
+  box-shadow: 6px 6px 10px 6px rgba(32, 77, 113, 0.27) !important;
 }
 
-#index-panel,
-#show-panel {
-  display: block;
-  margin-left: 2%;
-  float: left;
-}
-
-#index-panel {
-  height: 325px; /* panel(height) = panel-body(h) + index-panel-heading(h) */
-  width: 20%;
-  margin-bottom: 2%;
-  box-shadow: 6px 6px 10px 6px rgba(32, 77, 113, 0.27);
-}
-
-#show-panel {
-  width: 100%;
-  margin-top: 5px;
-  margin-bottom: 5%;
-    box-shadow: 6px 6px 10px 6px rgba(32, 77, 113, 0.27);
-
-  #box-shadow: 2px 2px 1px 2px rgba(0, 0, 0, 0.3)
-}
-
-#index-panel-heading,
-#show-panel-heading {
-  padding: 0px 0px;
+.panel-heading,
+.panel-heading-small {
   background-color: #c8d7e4;
-  position: relative;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-}
-
-#index-panel-heading {
-  line-height: 100px;
+  line-height: 100px; 
   height: 100px; /* panel-body height + panel-heading height = panel-height */
 }
 
-#show-panel-heading {
-  line-height: normal;
-  height: fit-content;
-}
-
-#index-panel-body,
-#show-panel-body {
+.panel-body,
+.panel-body-small {
   background-color: #e4edf5;
   text-align: center;
-}
-
-#index-panel-body {
   height: 225px; /* panel-body height + panel-heading height = panel-height */
   overflow-y:auto;
 }
 
-#show-panel-body { 
+.panel-small {
+  height: auto;
+  margin-bottom: 5%;
+}
+
+.panel-heading-small {
+  padding: 0px 0px;
+  line-height: normal;
+  height: fit-content;
+}
+
+.panel-body-small {
   height: auto;
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
-.allergen-show-heading{
-  padding: 0px 0px;
-  background-color: #c8d7e4;
-  position: relative;
-  font-size: 2rem;
-  line-height: 100px;
-  height: 100px;
-  font-weight: bold;
-  text-align: center;
-}
-
 #mini-allergen-panel {
-  display: inline-grid;
-  margin: 1%;
+  /*display: inline-grid;*/
+  margin: 5%;
 }
 
 #enlarge-allergen-panel {
@@ -105,6 +68,7 @@ body {
 }
 
 .btn {
+  white-space: normal !important;
   border: 1px solid;
   border-color: #3d505f !important;
 }
@@ -113,11 +77,10 @@ body {
 }
 
 .btn-my-primary {
-  color: white;
+  color: white !important;
   background-color: #657c8e  !important; 
   border-left: 3px solid #586c7b !important;
   border-color: #586c7b !important;
-  box-shadow: 4px 3px 7px 2px rgba(20, 26, 58, 0.64)
 }
 
 .btn-my-primary:hover {
@@ -126,41 +89,3 @@ body {
   border-color: #222635 !important;
 }
 
-#index-panel-button {
-  background-color: #657c8e  !important; 
-  border: 3px solid #586C89 !important;
-  color: white;
-  white-space: normal; /* make text in button wrap */
-  font-size: 1.8rem;
-}
-
-#index-panel-button:hover {
-  pointer-events: none;
-  cursor: none;
-}
-.allergen-form-label {
-  margin-top: -10px;
-  font-size: 2.5rem;
-}
-
-/*------------------*/
-@media (max-width: 2000px) {
-  #index-panel {  
-    width: 30%;
-  }
-}
-
-@media (max-width: 1500px) {
-  #index-panel { 
-    width: 40%;
-  }
-}
-
-@media (max-width: 1000px) {
-  #index-panel { 
-    float: none;
-    margin:auto;
-    margin-bottom: 2%;
-    width: 60%;
-  }
-}

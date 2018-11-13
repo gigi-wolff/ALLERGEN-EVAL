@@ -1,0 +1,32 @@
+<!-- When a partial is called with a pluralized collection, then the individual instances of the partial have access to the member of the collection being rendered via a variable named after the partial -->
+<% substances = allergen_details.get_substances %>
+  <div class="col-md-3">
+    <!-- Panel displaying allergen and substances -->
+
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="btn-group">
+          <button type="button" class="btn btn-my-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= allergen_details.category %>  <span class="glyphicon glyphicon-menu-down"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Edit   ", edit_allergen_path(allergen_details.category)%></li>
+            <li><%= link_to "Show   ", allergen_path(allergen_details.category)%></li>
+            <li><%= link_to "Delete   ", allergen_path(allergen_details.category), method: :delete, data: { confirm: "Are you sure you want to delete this Allergen?"}%></li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel-body">
+        <% substances.each do |substance| %>
+          <div class="substances text-color-not-ok">
+            <%= substance %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <!-- end Panel display -->
+  </div>
+
+
+

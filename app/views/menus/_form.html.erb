@@ -3,7 +3,7 @@
   <br>
   <% allergen_groups().each do |key, value| %>
     <div class='menu-panel'>
-      <div class='center-heading'>
+      <div class='center-heading label-color'>
         <%= key %>
       </div>
       <% grouping = @menu.where(group: value) %>

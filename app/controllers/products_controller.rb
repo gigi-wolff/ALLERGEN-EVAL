@@ -94,13 +94,21 @@ class ProductsController < ApplicationController
     redirect_to products_path # show.html.erb
   end
 
+  # DELETE '/products'
   def destroy_all
-    # already have @allergen at this point because 'set_allergen' was invoked
     Product.destroy_all
     flash[:success] = "All Products Successfully Deleted"
     redirect_to products_path # products/index
   end
 
+  # PATCH '/products'
+  def check_all
+    if Product.any?
+      Product.find_each {|product| product.check_for_allergens}
+    end 
+    flash[:success] = "All Products Successfully Checked For Allergens"
+    redirect_to products_path # products/index
+  end
 
   private
 

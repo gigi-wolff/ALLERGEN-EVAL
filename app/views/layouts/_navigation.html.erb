@@ -12,47 +12,61 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <div class="nav-buttons btn-group" role="group" aria-label="...">
-          <button type="button" class="btn menu-action-button btn-lg"><%= link_to "Select Allergens", menus_path %></button>
-        </div>
-        <div class="nav-buttons btn-group " role="group" aria-label="...">
-          <button type="button" class="btn allergen-action-button btn-lg"><%= link_to "List My Allergens", allergens_path %></button>
-          <button type="button" class="btn allergen-action-button btn-lg"><%= link_to "Add an Allergen", new_allergen_path %></button>
-          <button type="button" class="btn allergen-action-button btn-lg">
-          <%= link_to "Delete All My Allergens", allergens_path, method: :delete, data: { confirm: "Are you sure you want to delete all Allergens?"}%></li>
-        </div>
-        <div class="nav-buttons btn-group" role="group" aria-label="...">
-          <button type="button" class="btn product-action-button btn-lg"><%= link_to "List My Products", products_path %></button>
-          <button type="button" class="btn product-action-button btn-lg"><%= link_to "Add a Product", new_product_path %></button>
-          <button type="button" class="btn product-action-button btn-lg">
-          <%= link_to "Delete All My Products", products_path, method: :delete, data: { confirm: "Are you sure you want to delete all Products?"}%></li>
-        </div>
-        <div class="nav-buttons btn-group" role="group" aria-label="...">
-          <button type="button" class="btn reaction-action-button btn-lg"><%= link_to "Product Allergies", reactions_path %></button>
-        </div>
+      <ul class="nav nav-tabs nav-justified">
+        <!-- Dropdown for Allergens -->
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <strong>Allergens <span class="caret"></span></strong>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/allergens">List My Allergens</a></li>
+            <li><a href="/allergens/new">Add an Allergen to my List</a></li>
+            <li><a href="/menus">Select Allergens from Menu</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a data-confirm="Are you sure you want to delete all Allergens?" rel="nofollow" data-method="delete" href="/allergens">Delete <strong>ALL</strong> My Allergens</a></li>
+          </ul>
+        </li>
+        <!-- Dropdown for Products -->
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle my-nav-tab" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <strong> Products <span class="caret"></span></strong>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/products">List My Products</a></li>
+            <li><a href="/products/new">Add To My List</a></li>
+            <li><a href="/reactions">List Products Containing Allergens</a></li>
+            <li><a rel="nofollow" data-method="patch" href="/products">Re-check All My Products For Allergens</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a data-confirm="Are you sure you want to delete all Products?" rel="nofollow" data-method="delete" href="/products">Delete <strong>ALL</strong> My Products</a></li>
+          </ul>
+        </li>
+        <!--  Search --> 
+        <li role="presentation">
+          <div  class = "btn-group">
+            <%= form_tag(search_search_path, :method => "get",class: 'navbar-form') do %>  
+              <div class="input-group">  
+                <%= text_field_tag :search, params[:search], placeholder: "Search...", class: "form-control", size: 60 %>  
+                <div class="input-group-btn">  
+                  <%= button_tag "Search", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil %>
+                </div>  
+              </div> 
+            <% end %>
+          </div>
+        </li>
+        <!-- Profile and Log Out buttons -->
+        <% if user_signed_in? %>
+          <li role="presentation">
+            <div class="text-right">
+              <%= link_to profile_path(current_user.id), class: "btn-profile" do %>
+                  <span class="glyphicon glyphicon-user"></span>
+              <% end %>
+              <%= link_to destroy_user_session_path, class: "btn-group btn btn-danger btn-lg btn-logout", method: :delete do %>Log out 
+                <span class="glyphicon glyphicon-log-out"></span>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
       </ul>
-      <!--  Search --> 
-      <div id="search_form" class = "btn-group">
-        <%= form_tag(search_search_path, :method => "get",class: 'navbar-form') do %>  
-          <div class="input-group">  
-            <%= search_field_tag :search, params[:search], placeholder: "Search...", class: "form-control" %>  
-            <div class="input-group-btn">  
-              <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
-            </div>  
-          </div> 
-        <% end %>
-      </div>
-      <!-- Profile and Log Out buttons -->
-      <% if user_signed_in? %>
-        <%= link_to profile_path(current_user.id), class: "btn-profile" do %>
-          <span class="glyphicon glyphicon-user"></span>
-        <% end %>
-
-        <%= link_to destroy_user_session_path, class: "btn-group navbar-right btn btn-danger btn-lg", method: :delete do %>Log out 
-          <span class="glyphicon glyphicon-log-out"></span>
-        <% end %>
-      <% end %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
