@@ -26,10 +26,10 @@
         <!-- if ingredient causes reaction -->
         <% unless ingredient_search_results.empty? %>
           <tr>
-            <td class="show-ingredient-name add-padding color-not-ok">
+            <td class="show-ingredient-name add-padding background-color-not-ok">
               <%= current_ingredient %>
             </td>
-            <td class="add-padding color-not-ok">
+            <td class="add-padding background-color-not-ok">
               <% reactive_allergens = Allergen.find(ingredient_search_results.pluck(:allergen_id)) %>
               <div class="center-glyphicon text-color-not-ok">
                 <span class="glyphicon glyphicon-ban-circle"></span> 
