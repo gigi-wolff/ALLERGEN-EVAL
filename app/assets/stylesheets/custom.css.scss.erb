@@ -12,10 +12,6 @@ body {
   font-size: 1.8rem;
 }
 
-#search_form {
-  display: inline-block;
-}
-
 #logo {
   /*float: left;*/
   font-size: 4.75rem;
@@ -26,23 +22,8 @@ body {
   background: transparent url(<%= asset_path 'background-logo.jpg'%>) 82% 92% no-repeat;
 }
 
-.nav-buttons {
-  margin: 0 10px;
-}
-
 .label-color {
   color: #00334d;
-}
-
-#link-desc > a {
-  font-size: 3.0rem;
-  font-weight: bold;
-  color: white;
-}
-
-#link-desc a:hover {
-  cursor: pointer;
-  background-color: #839cab;
 }
 
 .center-heading {
@@ -59,18 +40,73 @@ body {
 }
 
 mark {
-  /*background-color: #e8e893;*/
   background-color: #f2dede;
   font-weight: bold;
   color: #800000;
 }
 
-#show_view {
-  pointer-events: none;
+.nav .open > a, 
+.nav .open > a:hover, 
+.nav .open > a:focus,
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: #d8e6f2;
+}
+
+/* ---------- dropdown ----------*/
+.dropdown-toggle {
+  font-size: 22px;
+  color: white;
+}
+
+.dropdown-menu {
+  box-shadow: 18px 12px 12px rgba(0, 0, 0, 0.175)
+}
+
+.dropdown-menu > li > a {
+  background: #f7fafc;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.dropdown-menu > li > a:hover, 
+.dropdown-menu > li > a:focus {
+  text-decoration: none;
+  color: #262626;
+  background-color: #d8e6f2;
+}
+
+/* -------- buttons ---------*/
+
+/* this creates an xl button and centers it on the page */
+.btn {
+  white-space: normal !important;
+  border: 1px solid;
+  border-color: #3d505f !important;
+}
+
+.btn-xlarge {
+  padding: 18px 48px;
+  font-size: 32px; //change this to your desired size
+  line-height: normal;
+  border-radius: 8px;
 }
 
 .btn-lg {
   margin-top: 3px;
+}
+
+.btn-my-primary {
+  color: white !important;
+  background-color: #657c8e  !important; 
+  border-left: 3px solid #586c7b !important;
+  border-color: #586c7b !important;
+}
+
+.btn-my-primary:hover {
+  color: #fff !important;
+  background-color: #3d5060 !important;
+  border-color: #222635 !important;
 }
 
 .btn-profile {
@@ -88,18 +124,17 @@ mark {
   width: 55px;
 }
 
+.btn-profile:hover {
+  color: #337ab7;
+  border: 3px solid #337ab7;
+  background-color: #d8e6f2 !important; 
+}
 
 .btn-lg > a,
 .btn-profile > a {
   display: inline-block;
   color: white;
   text-decoration: none;
-}
-
-.btn-profile:hover {
-  color: #337ab7;
-  border: 3px solid #337ab7;
-  background-color: #d8e6f2 !important; 
 }
 
 .btn-logout {
@@ -110,83 +145,11 @@ mark {
   pointer-events: none;
 }
 
-.center-btn{
+.center-btn {
   display: block;
   margin: 0 auto;
 }
-
-.nav .open > a, 
-.nav .open > a:hover, 
-.nav .open > a:focus,
-.nav > li > a:hover,
-.nav > li > a:focus {
-  background-color: #d8e6f2;
-}
-
-.dropdown-toggle {
-  font-size: 22px;
-  color: white;
-}
-
-.dropdown-menu {
-  box-shadow: 18px 12px 12px rgba(0, 0, 0, 0.175)
-}
-
-.dropdown-menu > li > a {
-  background: #f7fafc;
-}
-
-.dropdown-menu > li > a:hover, 
-.dropdown-menu > li > a:focus {
-  text-decoration: none;
-  color: #262626;
-  background-color: #d8e6f2;
-}
-
-/* this creates an xl button and centers it on the page */
-.btn-xlarge {
-  padding: 18px 48px;
-  font-size: 32px; //change this to your desired size
-  line-height: normal;
-  border-radius: 8px;
-}
-.product-action-button{
-  color: white !important;
-  background-color: #826205 !important;
-  border-color: #f5dc95 !important;
-}
-
-.product-action-button:hover {
-  color: #fff;
-  background-color: #674d03 !important;
-  border-color: #f5dc95 !important;
-}
-
-.allergen-action-button{
-  color: white;
-  background-color: #7b2a2a !important;; 
-  border-color: #d8c0c0 !important;
-}
-
-.allergen-action-button:hover {
-  color: white;
-  background-color: #5a1f1f !important;
-  border-color: #d8c0c0 !important;
-}
-
-.reaction-action-button{
-  color: white;
-  background-color: #2a2c7b !important;; 
-  border-color: #d8c0c0 !important;
-}
-
-.reaction-action-button:hover {
-  color: white;
-  background-color: #040656 !important;
-  border-color: #d8c0c0 !important;
-}
-
-/*flash*/
+/* --------- flash -----------*/
 .alert-error {
     background-color: #f2dede;
     border-color: #eed3d7;
@@ -214,10 +177,11 @@ mark {
     color: #468847;
     text-align: left;
  }
-/*------------------*/
 
-/*Triggers Bootstrap collapses (vertically stacks) the navbar at 2300px rather than 768 px*/
-@media (max-width: 1200px) {
+/*--------- Triggers Bootstrap navbar collapse ---------*/
+
+/* (vertically stacks) the navbar at 2300px rather than 768 px*/
+@media (max-width: 1250px) {
   .navbar-header {
       float: none;
   }
@@ -254,8 +218,5 @@ mark {
       margin: 20px;
   }
 
-  .nav-buttons {
-    margin: 0 15px;
-  }
 }
 

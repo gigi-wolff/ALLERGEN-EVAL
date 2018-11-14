@@ -13,7 +13,7 @@ text_field can to be any attribute (column) or virtual attribute of the allergen
  
 <div class='row'>
   <!-- there are 12 cols in row, if boxes take up 8 'col-lg-8', then offset by 2 'col-lg-offset-2' on each side will center boxes -->
-  <div class='form-horizontal col-lg-8 col-lg-offset-2'>
+  <div class='form-horizontal col-lg-6 col-lg-offset-3'>
     <%= form_for @allergen do |f| %>
       <div class="form-group input-group-lg" >
         <%= f.label :category, :class => "label-style text-color-not-ok"%>
@@ -25,7 +25,7 @@ text_field can to be any attribute (column) or virtual attribute of the allergen
         <%= f.text_area :substances, rows: 10, class: "form-control", placeholder: "first substance; second substance; ... " %>
       </div>
 
-      <button type="submit" class="btn btn-my-primary btn-lg">Save</button>
+      <button type="submit" class="btn btn-my-primary btn-xlarge">Save</button>
     <% end %>
     <br>
     <%= link_to "Cancel request and return to allergens listing", allergens_path %> 

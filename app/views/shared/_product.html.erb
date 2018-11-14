@@ -1,7 +1,7 @@
 <% product_reactions = product.causes_reaction %>
 <!-- for debugging... < % debug =1/0 % >  -->
 
-  <tr id="<%= index_view ? '' : 'show_view' %>" class="product-index">
+<tr id="<%= index_view ? '' : 'show_view' %>" class="product-index">
 
   <% if index_view %>
     <% if product_reactions.empty? %>
