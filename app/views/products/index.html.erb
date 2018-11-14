@@ -7,7 +7,7 @@
         <th class='center'>Ingredients</th>
         <th class='center' colspan="3">Actions</th>
       </tr>
-      <%= render partial: 'shared/product', collection: @products, :locals => {index_view: true, :view_type=>""}  %>
+      <%= render partial: 'shared/product', collection: @products, :locals => {index_view: true, :search_item=>""}  %>
     </table>
 
     <div class="center product-actions">
