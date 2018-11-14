@@ -4,11 +4,11 @@
     <%= Product.find(reactive_product).name %>
   </td>
   <td>
-    <%= get_reactive_ingredients(reactions_to_product) %>
+    <%= highlight(get_reactive_ingredients(reactions_to_product), search_item) %>
   </td>
   <td>
-    <%= get_allergen_categories(reactions_to_product) %>
+    <%= highlight(get_allergen_categories(reactions_to_product), search_item) %>
   </td>
   <td>
-    <%= get_reactive_substances(reactions_to_product) %>
+    <%= highlight(get_reactive_substances(reactions_to_product), search_item) %>
   </td>

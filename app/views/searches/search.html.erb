@@ -30,7 +30,7 @@
             <th class='center'>Allergen Categories:</th>
             <th class='center'>Substances in Category:</th>
           </tr>
-            <%= render partial: "shared/reactive_product", collection: reaction_search_results %>
+            <%= render partial: "shared/reactive_product", collection: reaction_search_results, :locals => {search_item: @search_item}%>
           </table>
       <% end %>
       <% unless allergen_search_results.empty? %>
